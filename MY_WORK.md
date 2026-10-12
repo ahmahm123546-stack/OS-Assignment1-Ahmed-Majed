@@ -129,16 +129,16 @@
 
 ## Your Development Log
 
-### Entry 1 - [Date and Time]
-**What I did**:
+### Entry 1 - [October 12, 2026,2:00 PM]
+**What I did**:Implemented the Process Priority feature in the CPU scheduling simulation.
 
-**Details**:
+**Details**:Added a priority field to the Process class and updated the constructor to accept a priority value. Generated a random priority between 1 and 10 for each process. Displayed the priority when a process enters the ready queue.
 
-**Challenges**:
+**Challenges**:Making sure the priority feature did not change the existing First-In, First-Out (FIFO) order of the ready queue.
 
-**Solution**:
+**Solution**:Kept the queue in FIFO order and used the priority value only for display, as required by the assignment. Ran the program to verify that each process's priority appeared in the output.
 
-**Time spent**:
+**Time spent**:1 hour
 
 ---
 
