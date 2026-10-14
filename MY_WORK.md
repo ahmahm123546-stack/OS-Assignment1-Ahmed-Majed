@@ -219,13 +219,16 @@ Traced the scheduling loop step by step and reviewed the queue operations and th
 
 > 💡 **TIP:** Fill this in **last**, after all entries are written.
 
-**Total time spent on assignment**: [X hours]
+**Total time spent on assignment**: [6 hours]
 
 **Most challenging part**:
+The most challenging part was implementing waiting time tracking while keeping the existing Round Robin scheduling algorithm working correctly. I needed to understand when a process enters and leaves the ready queue and how to calculate its waiting time accurately.
 
 **Most interesting learning**:
+The most interesting learning was understanding how Java threads work together with CPU scheduling concepts. I learned how to use thread methods such as start() and join() and how to track process information during the simulation.
 
 **What I would do differently next time**:
+Next time, I would plan the implementation of each feature before modifying the code. I would also test each feature separately after implementing it and commit my changes regularly to make debugging and tracking progress easier.
 
 ---
 
@@ -245,7 +248,7 @@ Traced the scheduling loop step by step and reviewed the queue operations and th
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+[I learned how threads work in Java and how they help run tasks The Process class uses Runnable to define what each process does I learned that Thread.start() starts a thread and Thread.join() waits for it to finish. In my code Thread.sleep() is used to simulate the time a process uses the  CPU I also learned how Round Robin gives each process a turn and returns unfinished processes to the queue I found it interesting to see the progress bar and remaining time change while the program runs.]
 
 ## Question 2: What was the most challenging part of this assignment?
 
@@ -253,7 +256,17 @@ Traced the scheduling loop step by step and reviewed the queue operations and th
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+[The hardest part of this assignment was understanding the existing code
+
+I found it difficult to know where to add each new feature without breaking the program
+
+I had to read the code carefully to understand how the different parts worked together
+
+I was worried that changing the wrong part would cause errors
+
+I tested the program after making changes to make sure everything still worked
+
+This helped me understand the code better and become more confident.]
 
 ## Question 3: How did you overcome the challenges you faced?
 
@@ -261,7 +274,17 @@ Traced the scheduling loop step by step and reviewed the queue operations and th
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+[I overcame the challenges by reading the code carefully and trying to understand how it works
+
+I worked on one feature at a time and checked where to add the new code
+
+I asked for help when I did not understand something
+
+After each change I ran the program to make sure it still worked
+
+When I faced problems I checked the code and tried to fix them
+
+In the end I understood the program better and learned how to add new features safely.]
 
 ## Question 4: How can you apply multithreading concepts in real-world applications?
 
@@ -269,7 +292,15 @@ Traced the scheduling loop step by step and reviewed the queue operations and th
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+[Multithreading can be used in many real world applications
+
+For example a web browser can do many tasks at the same time
+
+One thread can load a page while another downloads a file
+
+It can also be used in games to handle different tasks at the same time
+
+This helps programs work faster and run more smoothly.]
 
 ### Optional: What would you like to learn more about?
 
@@ -301,7 +332,11 @@ Traced the scheduling loop step by step and reviewed the queue operations and th
 
 **Your Answer:** *(3-5 sentences)*
 
-[Write your answer here.]
+[A process is a program that has its own memory while threads run inside a process and share its memory
+
+Creating separate processes usually takes more time and resources than creating threads
+In my code the `Process` class represents a simulated process and `new Thread(process)` creates a real Java thread to run it
+We used threads because they are easier to create and manage for this simulation and allow us to demonstrate how processes take turns using the CPU.]
 
 ## Question 2: Ready Queue Behavior
 
@@ -313,15 +348,35 @@ Traced the scheduling loop step by step and reviewed the queue operations and th
 
 **Your Answer:** *(3-5 sentences)*
 
-[Write your answer here.]
+[In Round Robin scheduling a process returns to the ready queue if it does not finish within its time quantum
+In my program the time quantum is 2000ms and P2 has a burst time of 4730ms
+P2 was re queued two times before it finished its execution
+Re queuing allows other processes to use the CPU while P2 waits for its next turn
+This makes the scheduling fair because one process cannot keep using the CPU until it finishes.]
 
 Example from my output:
 ```
-[Paste a relevant snippet from your program output here showing a process being re-queued]
+[▶ P2 executing quantum [2000ms]
+Remaining time: 2730ms
+↻ P2 yields CPU for context switch
+➕ P2 added to ready queue
+
+▶ P2 executing quantum [2000ms]
+Remaining time: 730ms
+↻ P2 yields CPU for context switch
+➕ P2 added to ready queue
+
+▶ P2 executing quantum [730ms]
+Remaining time: 0ms
+✓ P2 finished execution!]
 ```
 
 **Explanation of example:**
-[Explain what is happening in the output snippet you pasted.]
+[P2 has a burst time of 4730ms and the time quantum is 2000ms
+P2 cannot finish during its first turn so it returns to the ready queue with 2730ms remaining
+After its second turn P2 still has 730ms remaining so it returns to the ready queue again
+During its third turn P2 uses the remaining 730ms and finishes execution
+This shows how Round Robin scheduling allows other processes to use the CPU while P2 waits for its next turn]
 
 ## Question 3: Thread Lifecycle
 
@@ -331,15 +386,15 @@ Example from my output:
 
 **Your Answer:** *(3-5 sentences overall; one short explanation per state)*
 
-1. **New**: [When is P1 in the New state?]
+1. **New**: [P1 is in the New state when new Thread(process) creates its thread in addProcessToQueue().]
 
-2. **Runnable**: [When does P1 become Runnable?]
+2. **Runnable**: [P1 becomes Runnable when Thread.start() is called in the scheduler loop]
 
-3. **Running**: [When is P1 Running?]
+3. **Running**: [P1 runs when the JVM schedules its thread to execute the run() method, where Thread.sleep() simulates the CPU time.]
 
-4. **Waiting**: [When and why would a thread be Waiting?]
+4. **Waiting**: [The main thread enters the Waiting state when it calls P1.join() (or thread.join() for P1's thread), waiting for P1 to finish. P1's thread enters the Timed Waiting state when it calls Thread.sleep().]
 
-5. **Terminated**: [When is P1 Terminated?]
+5. **Terminated**: [P1 enters the Terminated state when its run() method finishes and the thread ends]
 
 ## Question 4: Real-World Applications
 
@@ -349,32 +404,32 @@ Example from my output:
 
 **Your Answer:** *(3-5 sentences per example)*
 
-### Example 1 (operating-system level): [Name of scenario]
+### Example 1 (operating-system level): [Operating System CPU Scheduling]
 
 **Description**:
-[Describe the real-world scenario.]
+[An operating system can use Round-Robin scheduling to share CPU time among processes that are ready to run. Each process gets a fixed time quantum to execute. If it does not finish, it returns to the ready queue, allowing other processes to run. A context switch happens when the CPU switches from one process to another.]
 
 **Why Round-Robin works well here**:
-[Fairness, responsiveness, predictability?]
+[Round Robin provides fairness because each process gets a turn to use the CPU. It also improves responsiveness because one process cannot keep the CPU for too long.]
 
-### Example 2: [Name of application/scenario]
+### Example 2: [Web Server Threads]
 
 **Description**:
-[Describe the real-world scenario or application.]
+[A web server can use multiple worker threads to handle requests from different clients. A Round-Robin scheduler can give each thread a limited time to execute before another thread gets a turn. The time quantum limits each turn, and a context switch allows another thread to run.]
 
 **Why Round-Robin works well here**:
-[Fairness, responsiveness, predictability?]
+[This approach can improve fairness by giving threads opportunities to run. It can also improve responsiveness when many requests need processing, although actual web servers may use other scheduling methods.]
 
 ## Summary
 
 **Key concepts I understood through these questions:**
-1.
-2.
-3.
+1.Round-Robin scheduling gives each process a fixed time quantum to execute.
+2.A process that does not finish returns to the ready queue for another turn.
+3.Threads have different lifecycle states, and start(), sleep(), and join() affect their execution.
 
 **Concepts I need to study more:**
-1.
-2.
+1.the difference between a Java thread's lifecycle states, especially Waiting and Timed Waiting.
+2.How context switching and CPU scheduling work in real operating systems.
 
 ---
 
