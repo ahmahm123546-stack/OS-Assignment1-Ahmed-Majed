@@ -189,16 +189,16 @@ Executed the simulation, inspected the terminal output, and reviewed the source 
 
 ---
 
-### Entry 5 - [Date and Time]
+### Entry 5 - [October 14, 2026,8:30 PM]
 **What I did**:
-
+Reviewed the Round Robin scheduling algorithm and the interaction between the process queue and Java threads.
 **Details**:
-
+Examined how processes are stored in the ready queue, how threads are started and joined, and how unfinished processes return to the queue. Reviewed how the new features work with the existing scheduling logic.
 **Challenges**:
-
+Understanding how the ready queue and thread execution work together, especially when a process has not completed its burst time.
 **Solution**:
-
-**Time spent**:
+Traced the scheduling loop step by step and reviewed the queue operations and thread methods to understand how processes take turns using the CPU.
+**Time spent**: 30 minute
 
 ---
 
