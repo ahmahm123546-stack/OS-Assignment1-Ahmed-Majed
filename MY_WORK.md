@@ -142,16 +142,20 @@
 
 ---
 
-### Entry 2 - [Date and Time]
+### Entry 2 - [ October 14, 2026,12:00 AM]
 **What I did**:
+Implemented the context switch counter in SchedulerSimulation.java and filled in the student information section in MY_WORK.md.
 
 **Details**:
+Added a static counter named contextSwitchCount. The counter increments whenever a process thread starts running, and the total number of context switches is displayed after the scheduling loop finishes.
 
 **Challenges**:
+Understanding where to increment the counter and where to display the final count.
 
 **Solution**:
+Incremented the counter before currentThread.start() and printed the total count after the scheduling loop.
 
-**Time spent**:
+**Time spent**:45 minute
 
 ---
 
