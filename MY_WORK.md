@@ -159,29 +159,33 @@ Incremented the counter before currentThread.start() and printed the total count
 
 ---
 
-### Entry 3 - [Date and Time]
+### Entry 3 - [October 14, 2026,4:00 PM]
 **What I did**:
+Implemented Feature 3: Waiting Time Tracking in SchedulerSimulation.java.
+
+
 
 **Details**:
-
+Added methods to record and calculate the time each process spends waiting in the ready queue. Added a final process table displaying Process Name, Burst Time, Waiting Time, and Turnaround Time.
 **Challenges**:
-
+Calculating the waiting time correctly when processes leave and re-enter the ready queue.
 **Solution**:
-
-**Time spent**:
+Used System.currentTimeMillis() to record queue entry times and accumulate waiting time whenever a process starts running. Tested the program to verify that the final process table was displayed correctly.
+**Time spent**: 2 hour
 
 ---
 
-### Entry 4 - [Date and Time]
+### Entry 4 - [October 14, 2026,6:00 PM]
 **What I did**:
-
+Tested the completed scheduling simulation and reviewed the assignment requirements.
 **Details**:
+Ran the program and checked the process priorities, context switch count, and final process summary table. Reviewed the Git history and checked that the latest changes were committed and pushed.
 
 **Challenges**:
-
+Verifying that the new features worked with the existing Round Robin scheduling logic.
 **Solution**:
-
-**Time spent**:
+Executed the simulation, inspected the terminal output, and reviewed the source code and Git status to identify any remaining issues.
+**Time spent**: 30 minute
 
 ---
 
